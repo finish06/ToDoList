@@ -5,7 +5,11 @@ const cors = require('cors');
 const pool = require('./db');
 
 // middleware
-app.use(cors());
+var corsOptions = {
+    origin: 'https://todo.calebdunn.tech'
+}
+
+app.use(cors(corsOptions));
 app.use(express.json()); //req.body
 
 // routes
