@@ -9,7 +9,7 @@ const ListTodos = () => {
     // Delete function
     const deleteTodo = async(id) => {
         try {
-            const response = await fetch(`http://localhost:5000/todos/${id}`, {
+            const response = await fetch(`${process.env.REACT_APP_SERVER_HOSTNAME}/todos/${id}`, {
                 method: "DELETE"
             });
             setTodos(todos.filter(todo => todo.todo_id !== id))
@@ -20,7 +20,7 @@ const ListTodos = () => {
 
     const getTodos = async () => {
         try {
-            const response = await fetch("http://localhost:5000/todos");
+            const response = await fetch(`${process.env.REACT_APP_SERVER_HOSTNAME}/todos`);
             const jsonData = await response.json();
 
             setTodos(jsonData);
