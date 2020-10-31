@@ -9,7 +9,7 @@ var corsOptions = {
     origin: 'https://todo.calebdunn.tech'
 }
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json()); //req.body
 
 // routes
@@ -50,7 +50,8 @@ app.put('/todos/:id', async(req, res) => {
     try {
         const {id} = req.params;
         const {description} = req.body;
-        const updateTodo = await pool.query("UPDATE todo SET description = $1 WHERE todo_id = $2", [description, id]);
+        const {activeFlag} = req.body;
+        const updateTodo = await pool.query("UPDATE todo SET description = $1, active_flag = $2 WHERE todo_id = $3", [description, activeFlag, id]);
         res.json('Todo was updated');
     } catch (err) {
         console.error(err.message);
@@ -58,7 +59,7 @@ app.put('/todos/:id', async(req, res) => {
 })
 
 // delete a todo
-app.delete('/todos/:id', async (req, res) => {
+app.delete('/todos/:id',  async (req, res) => {
     try {
         const {id} = req.params;
         const deleteTodo = await pool.query("DELETE FROM todo WHERE todo_id = $1", [id]);
