@@ -27,7 +27,7 @@ app.post("/todos", async(req, res) => {
 // get all todos
 app.get("/todos", async(req, res) => {
     try {
-        const allTodos = await pool.query("SELECT * FROM todo");
+        const allTodos = await pool.query("SELECT * FROM todo WHERE active_flag = True");
         res.json(allTodos.rows);
     } catch (err) {
         console.error(err.message);
