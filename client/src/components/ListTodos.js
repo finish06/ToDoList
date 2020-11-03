@@ -12,6 +12,7 @@ const ListTodos = () => {
             const response = await fetch(`${process.env.REACT_APP_SERVER_HOSTNAME}/todos/${id}`, {
                 method: "DELETE"
             });
+            // Return only remaining active todos without querying the database
             setTodos(todos.filter(todo => todo.todo_id !== id))
         } catch (err) {
             console.error(err.message);
