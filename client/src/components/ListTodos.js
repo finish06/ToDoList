@@ -9,6 +9,8 @@ const ListTodos = () => {
     // Delete function
     const deleteTodo = async(id) => {
         try {
+            // const todo = todos.filter(todo => todo.todo_id === id);
+            // const body = todos.active_flag;
             const response = await fetch(`${process.env.REACT_APP_SERVER_HOSTNAME}/todos/${id}`, {
                 method: "DELETE"
             });
