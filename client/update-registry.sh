@@ -17,4 +17,4 @@ else
     docker tag todo-frontend 192.168.1.41:25129/todo-frontend:$1
     echo "Pushing container to registry"
     docker push 192.168.1.41:25129/todo-frontend:$1
-
+fi
